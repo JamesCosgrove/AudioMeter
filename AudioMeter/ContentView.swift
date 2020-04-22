@@ -9,9 +9,30 @@
 import SwiftUI
 
 struct ContentView: View {
+	@State var level = 6.0
+	var colors: [Color] = [.green, .green, .green, .green, .green, .green, .yellow, .yellow, .red, .red]
     var body: some View {
-        Text("Hello, World!")
-    }
+		VStack {
+			ForEach(0..<10, id: \.self) { cell in
+				HStack {
+					Text("\(10 - cell)")
+						.frame(width: 30)
+						.font(.system(.body, design: .monospaced))
+					ZStack {
+						RoundedRectangle(cornerRadius: 10)
+							.frame(width: 100, height: 30, alignment: .center)
+							.foregroundColor(.black)
+						RoundedRectangle(cornerRadius: 10)
+							.frame(width: 100, height: 30, alignment: .center)
+							.opacity(10.0 - Double(cell) <= self.level ? 1 : 0.4)
+							.foregroundColor(self.colors[9 - cell])
+					}
+				}
+			}
+			Slider(value: $level, in: 1...10, step: 1)
+			.padding()
+		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
