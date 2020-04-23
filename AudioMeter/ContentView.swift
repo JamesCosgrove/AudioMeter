@@ -36,7 +36,7 @@ struct AudioView: View {
 				HStack {
 					if self.labelLeading {
 						LabelView(cells: self.cells, cell: cell)
-}
+					}
 					CellView(level: self.$level, cell: cell, cells: self.cells)
 					if !self.labelLeading {
 						LabelView(cells: self.cells, cell: cell)

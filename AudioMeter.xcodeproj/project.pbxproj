@@ -13,6 +13,7 @@
 		1ACC3CF82450BFDC009EE776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC3CF72450BFDC009EE776 /* Assets.xcassets */; };
 		1ACC3CFB2450BFDC009EE776 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC3CFA2450BFDC009EE776 /* Preview Assets.xcassets */; };
 		1ACC3CFE2450BFDC009EE776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC3CFC2450BFDC009EE776 /* LaunchScreen.storyboard */; };
+		1ACC3D06245197E3009EE776 /* ezgif-6-0ef4a47466cc.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC3D05245197E3009EE776 /* ezgif-6-0ef4a47466cc.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1ACC3CFA2450BFDC009EE776 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1ACC3CFD2450BFDC009EE776 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ACC3CFF2450BFDC009EE776 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1ACC3D05245197E3009EE776 /* ezgif-6-0ef4a47466cc.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ezgif-6-0ef4a47466cc.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				1ACC3CF32450BFD9009EE776 /* SceneDelegate.swift */,
 				1ACC3CF52450BFD9009EE776 /* ContentView.swift */,
 				1ACC3CF72450BFDC009EE776 /* Assets.xcassets */,
+				1ACC3D05245197E3009EE776 /* ezgif-6-0ef4a47466cc.gif */,
 				1ACC3CFC2450BFDC009EE776 /* LaunchScreen.storyboard */,
 				1ACC3CFF2450BFDC009EE776 /* Info.plist */,
 				1ACC3CF92450BFDC009EE776 /* Preview Content */,
@@ -135,6 +138,7 @@
 			files = (
 				1ACC3CFE2450BFDC009EE776 /* LaunchScreen.storyboard in Resources */,
 				1ACC3CFB2450BFDC009EE776 /* Preview Assets.xcassets in Resources */,
+				1ACC3D06245197E3009EE776 /* ezgif-6-0ef4a47466cc.gif in Resources */,
 				1ACC3CF82450BFDC009EE776 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
