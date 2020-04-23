@@ -9,34 +9,70 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var level = 6.0
-	var colors: [Color] = [.green, .green, .green, .green, .green, .green, .yellow, .yellow, .red, .red]
+	@State var levelOne: Double = 5.0
+	@State var levelTwo: Double = 5.0
+	@State var cells: Int = 10
+	var body: some View {
+		VStack {
+			HStack {
+				AudioView(level: $levelOne, cells: cells, labelsLeading: true)
+				AudioView(level: $levelTwo, cells: cells, labelsLeading: false)
+			}
+			HStack {
+				Slider(value: $levelOne, in: 0...Double(cells), step: 1)
+				Slider(value: $levelTwo, in: 0...Double(cells), step: 1)
+					
+			}.padding()
+		}
+	}
+}
+
+struct AudioView: View {
+	@Binding var level: Double
+	@State var cells: Int
+	@State var labelsLeading: Bool
     var body: some View {
 		VStack {
-			ForEach(0..<10, id: \.self) { cell in
-				HStack {
-					Text("\(10 - cell)")
-						.frame(width: 30)
-						.font(.system(.body, design: .monospaced))
-					ZStack {
-						RoundedRectangle(cornerRadius: 10)
-							.frame(width: 100, height: 30, alignment: .center)
-							.foregroundColor(.black)
-						RoundedRectangle(cornerRadius: 10)
-							.frame(width: 100, height: 30, alignment: .center)
-							.opacity(10.0 - Double(cell) <= self.level ? 1 : 0.4)
-							.foregroundColor(self.colors[9 - cell])
+			HStack {
+				VStack {
+					ForEach(1...cells, id: \.self) { cell in
+						HStack {
+							if self.labelsLeading {
+								Text("\((self.cells + 1) - cell)")
+									.frame(width: 30)
+									.font(.system(.headline, design: .monospaced))
+							}
+							CellView(level: self.$level, cell: cell, cells: self.cells)
+							if !self.labelsLeading {
+								Text("\((self.cells + 1) - cell)")
+									.frame(width: 30)
+									.font(.system(.headline, design: .monospaced))
+							}
+						}
 					}
 				}
 			}
-			Slider(value: $level, in: 1...10, step: 1)
-			.padding()
 		}
+	}
+}
+
+struct CellView: View {
+	@Binding var level: Double
+	@State var cell: Int
+	@State var cells: Int
+	var body: some View {
+		ZStack {
+			RoundedRectangle(cornerRadius: 8)
+				.foregroundColor(.black)
+			RoundedRectangle(cornerRadius: 8)
+				.foregroundColor(Double(cell) <= 0.2 * Double(cells) ? .red : (Double(cell) <= 0.4 * Double(cells) ? .yellow : .green))
+				.opacity(Double(cell) <= Double(cells) - level ? 0.32 : 1)
+		}.frame(width: 100, height: 30, alignment: .center)
 	}
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+		ContentView()
     }
 }
