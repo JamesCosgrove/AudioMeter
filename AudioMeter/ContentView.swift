@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+
+
+
 struct ContentView: View {
 	@State var levelOne: Double = 5.0
 	@State var levelTwo: Double = 5.0
@@ -69,6 +72,7 @@ struct CellView: View {
 				.foregroundColor(Double(cell) <= 0.2 * Double(cells) ? .red : (Double(cell) <= 0.4 * Double(cells) ? .yellow : .green))
 				.opacity(Double(cell) <= Double(cells) - level ? 0.32 : 1)
 		}.frame(width: 100, height: 30, alignment: .center)
+			.animation(cell == 1 ? Animation.easeIn(duration: Double(cells + 1 - cell) == level ? 0 : 0.5).delay(Double(cells + 1 - cell) == level ? 0 : 1) : .none)
 	}
 }
 
