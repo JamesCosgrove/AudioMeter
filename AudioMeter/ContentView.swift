@@ -35,19 +35,25 @@ struct AudioView: View {
 			ForEach(1...cells, id: \.self) { cell in
 				HStack {
 					if self.labelLeading {
-						Text("\((self.cells + 1) - cell)")
-							.frame(width: 30)
-							.font(.system(.headline, design: .monospaced))
-					}
+						LabelView(cells: self.cells, cell: cell)
+}
 					CellView(level: self.$level, cell: cell, cells: self.cells)
 					if !self.labelLeading {
-						Text("\((self.cells + 1) - cell)")
-							.frame(width: 30)
-							.font(.system(.headline, design: .monospaced))
+						LabelView(cells: self.cells, cell: cell)
 					}
 				}
 			}
 		}
+	}
+}
+
+struct LabelView: View {
+	@State var cells: Int
+	@State var cell: Int
+	var body: some View {
+		Text("\((self.cells + 1) - cell)")
+			.frame(width: 30)
+			.font(.system(.headline, design: .monospaced))
 	}
 }
 
