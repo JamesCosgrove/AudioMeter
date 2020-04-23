@@ -15,8 +15,8 @@ struct ContentView: View {
 	var body: some View {
 		VStack {
 			HStack {
-				AudioView(level: $levelOne, cells: cells, labelsLeading: true)
-				AudioView(level: $levelTwo, cells: cells, labelsLeading: false)
+				AudioView(level: $levelOne, cells: cells, labelLeading: true)
+				AudioView(level: $levelTwo, cells: cells, labelLeading: false)
 			}
 			HStack {
 				Slider(value: $levelOne, in: 0...Double(cells), step: 1)
@@ -30,20 +30,20 @@ struct ContentView: View {
 struct AudioView: View {
 	@Binding var level: Double
 	@State var cells: Int
-	@State var labelsLeading: Bool
+	@State var labelLeading: Bool
     var body: some View {
 		VStack {
 			HStack {
 				VStack {
 					ForEach(1...cells, id: \.self) { cell in
 						HStack {
-							if self.labelsLeading {
+							if self.labelLeading {
 								Text("\((self.cells + 1) - cell)")
 									.frame(width: 30)
 									.font(.system(.headline, design: .monospaced))
 							}
 							CellView(level: self.$level, cell: cell, cells: self.cells)
-							if !self.labelsLeading {
+							if !self.labelLeading {
 								Text("\((self.cells + 1) - cell)")
 									.frame(width: 30)
 									.font(.system(.headline, design: .monospaced))
