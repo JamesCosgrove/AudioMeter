@@ -22,8 +22,8 @@ struct ContentView: View {
 				AudioView(level: $levelTwo, cells: cells, labelLeading: false)
 			}
 			HStack {
-				Slider(value: $levelOne, in: 0...Double(cells), step: 1)
-				Slider(value: $levelTwo, in: 0...Double(cells), step: 1)
+				Slider(value: $levelOne, in: 0...1, step: 0.1)
+				Slider(value: $levelTwo, in: 0...1, step: 0.1)
 			}.padding()
 		}
 	}
@@ -70,9 +70,9 @@ struct CellView: View {
 				.foregroundColor(.black)
 			RoundedRectangle(cornerRadius: 8)
 				.foregroundColor(Double(cell) <= 0.2 * Double(cells) ? .red : (Double(cell) <= 0.4 * Double(cells) ? .yellow : .green))
-				.opacity(Double(cell) <= Double(cells) - level ? 0.32 : 1)
+				.opacity(Double(cell) <= Double(cells) - level * Double(cells) ? 0.32 : 1)
 		}.frame(width: 100, height: 30, alignment: .center)
-			.animation(cell == 1 ? Animation.easeIn(duration: Double(cells + 1 - cell) == level ? 0 : 0.5).delay(Double(cells + 1 - cell) == level ? 0 : 1) : .none)
+			.animation(cell == 1 ? Animation.easeIn(duration: Double(cells + 1 - cell) == level * Double(cells) ? 0 : 0.5).delay(Double(cells + 1 - cell) == level * Double(cells) ? 0 : 1) : .none)
 	}
 }
 
