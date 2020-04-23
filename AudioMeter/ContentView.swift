@@ -32,16 +32,16 @@ struct ContentView: View {
 struct AudioView: View {
 	@Binding var level: Double
 	@State var cells: Int
-	@State var labelLeading: Bool
+	@State var labelLeading: Bool? = true
     var body: some View {
 		VStack {
 			ForEach(1...cells, id: \.self) { cell in
 				HStack {
-					if self.labelLeading {
+					if self.labelLeading! {
 						LabelView(cells: self.cells, cell: cell)
 					}
 					CellView(level: self.$level, cell: cell, cells: self.cells)
-					if !self.labelLeading {
+					if !self.labelLeading! {
 						LabelView(cells: self.cells, cell: cell)
 					}
 				}
