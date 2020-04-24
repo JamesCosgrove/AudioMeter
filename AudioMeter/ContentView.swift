@@ -18,21 +18,21 @@ struct ContentView: View {
 	var body: some View {
 		VStack {
 			HStack {
-				AudioView(level: $levelOne, cells: cells, labelLeading: true)
-				AudioView(level: $levelTwo, cells: cells, labelLeading: false)
+				AudioView(level: levelOne, cells: cells)
+				
 			}
 			HStack {
 				Slider(value: $levelOne, in: 0...1, step: 0.1)
-				Slider(value: $levelTwo, in: 0...1, step: 0.1)
+					.frame(width: 150)
 			}.padding()
 		}
 	}
 }
 
 struct AudioView: View {
-	@Binding var level: Double
-	@State var cells: Int
-	@State var labelLeading: Bool? = true
+	let level: Double
+	let cells: Int
+	let labelLeading: Bool? = true
     var body: some View {
 		VStack(alignment: self.labelLeading! ? .trailing : .leading) {
 			ForEach(1...cells, id: \.self) { cell in
@@ -40,7 +40,7 @@ struct AudioView: View {
 					if self.labelLeading! {
 						LabelView(cells: self.cells, cell: cell)
 					}
-					CellView(level: self.$level, cell: cell, cells: self.cells)
+					CellView(level: self.level, cell: cell, cells: self.cells)
 					if !self.labelLeading! {
 						LabelView(cells: self.cells, cell: cell)
 					}
@@ -51,8 +51,8 @@ struct AudioView: View {
 }
 
 struct LabelView: View {
-	@State var cells: Int
-	@State var cell: Int
+	let cells: Int
+	let cell: Int
 	var body: some View {
 		Text("\((self.cells + 1) - cell)")
 			.font(.system(.headline, design: .monospaced))
@@ -60,9 +60,9 @@ struct LabelView: View {
 }
 
 struct CellView: View {
-	@Binding var level: Double
-	@State var cell: Int
-	@State var cells: Int
+	let level: Double
+	let cell: Int
+	let cells: Int
 	var body: some View {
 		ZStack {
 			RoundedRectangle(cornerRadius: 8)
