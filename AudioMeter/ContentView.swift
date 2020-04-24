@@ -34,7 +34,7 @@ struct AudioView: View {
 	@State var cells: Int
 	@State var labelLeading: Bool? = true
     var body: some View {
-		VStack {
+		VStack(alignment: self.labelLeading! ? .trailing : .leading) {
 			ForEach(1...cells, id: \.self) { cell in
 				HStack {
 					if self.labelLeading! {
@@ -55,7 +55,6 @@ struct LabelView: View {
 	@State var cell: Int
 	var body: some View {
 		Text("\((self.cells + 1) - cell)")
-			.frame(width: 30)
 			.font(.system(.headline, design: .monospaced))
 	}
 }
@@ -72,7 +71,7 @@ struct CellView: View {
 				.foregroundColor(Double(cell) <= 0.2 * Double(cells) ? .red : (Double(cell) <= 0.4 * Double(cells) ? .yellow : .green))
 				.opacity(Double(cell) <= Double(cells) - level * Double(cells) ? 0.32 : 1)
 		}.frame(width: 100, height: 30, alignment: .center)
-			.animation(cell == 1 ? Animation.easeIn(duration: Double(cells + 1 - cell) == level * Double(cells) ? 0 : 0.5).delay(Double(cells + 1 - cell) == level * Double(cells) ? 0 : 1) : .none)
+			.animation(cell == 1 ? Animation.easeIn(duration: Double(cells + 1 - cell) == level * Double(cells) ? 0 : 0.2).delay(Double(cells + 1 - cell) == level * Double(cells) ? 0 : 0.5) : .none)
 	}
 }
 
